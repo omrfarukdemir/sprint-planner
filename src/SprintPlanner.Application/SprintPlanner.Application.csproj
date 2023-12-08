@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <TargetFramework>net8.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Accord.Math" Version="3.8.0" />
+      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+      <PackageReference Include="MediatR" Version="12.1.1" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Developers\Commands\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SprintPlanner.Domain\SprintPlanner.Domain.csproj" />
+      <ProjectReference Include="..\SprintPlanner.Infrastructure\SprintPlanner.Infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>

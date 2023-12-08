@@ -1,0 +1,70 @@
+@model SprintViewModel
+@{
+    ViewData["Title"] = "Sprint";
+    var planningAlgorithmType = new SelectList(Enum.GetValues<PlanningAlgorithmType>());
+}
+
+<div class="row">
+    <div class="col">
+        <h2>Developers</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Difficulty</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            @foreach (var developer in Model.Developers)
+            {
+                <tr>
+                    <th scope="row">@developer.Id</th>
+                    <td>@developer.Name</td>
+                    <td>@developer.Duration</td>
+                    <td>@developer.Difficulty.ToString()</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col">
+        <h2>Tasks</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Difficulty</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var task in Model.Tasks)
+            {
+                <tr>
+                    <th scope="row">@task.Id</th>
+                    <td>@task.Name</td>
+                    <td>@task.Duration</td>
+                    <td>@task.Difficulty.ToString()</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <form asp-action="Schedule" method="post" class="row row-cols-lg-auto g-3 align-items-center">
+        <div class="col-12">
+            <label>Planning Algorithm Type</label>
+            <select class="form-select" name="algorithmType" asp-items="planningAlgorithmType">
+            </select>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Schedule</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,49 @@
+@model List<DeveloperWithTasksDto>
+@{
+    ViewData["Title"] = "Sprint Schedule";
+}
+<h4 class="text-center py-2">Weekly Task Schedule</h4>
+<div class="row justify-content-center">
+    @foreach (var developer in Model)
+    {
+        <div class="col-lg-4 mb-4">
+            <div class="border p-3">
+                <h5 class="text-center">@developer.Name</h5>
+                <table class="table table-sm">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Difficulty</th>
+                        <th>Duration</th>
+                        <th>Expected Duration</th>
+                        <th>Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @{
+                        double totalHour = 0;
+                    }
+                    @foreach (var task in developer.Tasks)
+                    {
+                        <tr>
+                            <td>@task.Id</td>
+                            <td>@task.Name</td>
+                            <td>@task.Difficulty</td>
+                            <td>@task.Duration</td>
+                            <td>@TimeSpan.FromHours(task.ExpectedDuration).ToString("hh':'mm")</td>
+                            <td>
+                                @{ totalHour += task.ExpectedDuration; }
+                                @TimeSpan.FromSeconds(totalHour * 3600).ToString("c")
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+                <div class="text-end mt-3">
+                    Total: @($"{Math.Round(totalHour) / 45:F2} week")
+                </div>
+            </div>
+        </div>
+    }
+</div>

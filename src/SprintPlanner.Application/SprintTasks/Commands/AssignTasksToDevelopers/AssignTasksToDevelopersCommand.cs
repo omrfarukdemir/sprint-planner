@@ -1,0 +1,3 @@
+namespace SprintPlanner.Application.SprintTasks.Commands.AssignTasksToDevelopers;
+
+public record AssignTasksToDevelopersCommand(PlanningAlgorithmType AlgorithmType) : IRequest;
